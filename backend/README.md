@@ -19,4 +19,5 @@ Set these environment variables in the backend project:
 ```text
 SENTINELPAY_DATABASE_URL=<Render PostgreSQL URL>
 SENTINELPAY_CORS_ORIGINS=https://<frontend-vercel-domain>
+SENTINELPAY_WEBAUTHN_ORIGIN=https://<frontend-vercel-domain>
 ```

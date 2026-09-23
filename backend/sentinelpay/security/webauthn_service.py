@@ -15,10 +15,12 @@ Flow:
     4. POST /webauthn/authenticate/verify  -> confirms it's really the user's device
 """
 
+import os
 import secrets
 import time
 from datetime import datetime, timedelta
 from typing import Dict, Optional
+from urllib.parse import urlparse
 
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel
@@ -36,7 +38,6 @@ from webauthn.helpers.structs import (
     AuthenticatorSelectionCriteria,
     UserVerificationRequirement,
 )
-from webauthn.helpers import base64url_to_bytes
 from sentinelpay.backend.routes.auth import _create_token
 from sentinelpay.backend.database import SessionLocal
 from sentinelpay.backend.models import WebAuthnCredential, WebAuthnVerificationGrant
@@ -51,6 +52,11 @@ SUPPORTED_ORIGINS = {
     "http://localhost:5173": "localhost",
     "http://127.0.0.1:5173": "127.0.0.1",
 }
+DEPLOYED_ORIGIN = os.getenv("SENTINELPAY_WEBAUTHN_ORIGIN")
+if DEPLOYED_ORIGIN:
+    DEPLOYED_RP_ID = urlparse(DEPLOYED_ORIGIN).hostname
+    if DEPLOYED_RP_ID:
+        SUPPORTED_ORIGINS[DEPLOYED_ORIGIN.rstrip("/")] = DEPLOYED_RP_ID
 
 # In-memory stores for the hackathon demo — swap for real DB tables.
 # _credentials: user_id -> {credential_id, public_key, sign_count}
@@ -59,7 +65,7 @@ _pending_challenges: Dict[str, Dict] = {}
 
 
 def _origin_config(request: Request) -> tuple[str, str]:
-    origin = request.headers.get("origin", "http://localhost:5173")
+    origin = request.headers.get("origin", DEPLOYED_ORIGIN or "http://localhost:5173").rstrip("/")
     if origin not in SUPPORTED_ORIGINS:
         raise HTTPException(status_code=400, detail="unsupported frontend origin")
     return origin, SUPPORTED_ORIGINS[origin]

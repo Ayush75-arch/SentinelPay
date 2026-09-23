@@ -40,6 +40,7 @@ Backend project:
 - Python entrypoint: `api/index.py`
 - Environment variable: `SENTINELPAY_DATABASE_URL=<Render PostgreSQL URL>`
 - Environment variable: `SENTINELPAY_CORS_ORIGINS=https://<frontend-vercel-domain>`
+- Environment variable: `SENTINELPAY_WEBAUTHN_ORIGIN=https://<frontend-vercel-domain>`
 
 Do not commit database credentials. The backend uses SQLite only as a local fallback and PostgreSQL in deployment.
 
