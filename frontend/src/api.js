@@ -4,9 +4,12 @@
 // Change API_BASE_URL if your backend runs somewhere other than
 // http://localhost:8000.
 
-export const API_BASE_URL = (
-  import.meta.env.VITE_API_BASE_URL || "http://localhost:8000"
-).replace(/\/$/, "");
+const configuredApiUrl = import.meta.env.VITE_API_BASE_URL;
+export const API_BASE_URL = configuredApiUrl
+  ? configuredApiUrl.replace(/\/$/, "")
+  : import.meta.env.DEV
+    ? "http://localhost:8000"
+    : "";
 
 // A function, not a constant — default parameters below call this on
 // every invocation, so it always reflects whatever LoginPage most

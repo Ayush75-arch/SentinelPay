@@ -24,23 +24,24 @@ For local frontend-to-backend calls, set `VITE_API_BASE_URL=http://127.0.0.1:800
 
 ## Vercel deployment
 
-Create two Vercel projects from this repository.
+Create one Vercel project from this repository:
 
-Frontend project:
-
-- Root Directory: `frontend`
+- Root Directory: leave empty
 - Framework: Vite
-- Build Command: `npm run build`
-- Output Directory: `dist`
-- Environment variable: `VITE_API_BASE_URL=https://<backend-vercel-domain>`
+- Build Command: `cd frontend && npm run build`
+- Output Directory: `frontend/dist`
+- `api/index.py` serves FastAPI and `vercel.json` routes API paths to it
 
-Backend project:
+The frontend uses same-origin API calls in production. You do not need to set
+`VITE_API_BASE_URL` for the single-project deployment; optionally set it to `/`.
 
-- Root Directory: `backend`
-- Python entrypoint: `api/index.py`
-- Environment variable: `SENTINELPAY_DATABASE_URL=<Render PostgreSQL URL>`
-- Environment variable: `SENTINELPAY_CORS_ORIGINS=https://<frontend-vercel-domain>`
-- Environment variable: `SENTINELPAY_WEBAUTHN_ORIGIN=https://<frontend-vercel-domain>`
+Set these Vercel environment variables:
+
+```text
+SENTINELPAY_DATABASE_URL=<Render PostgreSQL URL>
+SENTINELPAY_CORS_ORIGINS=https://<frontend-vercel-domain>
+SENTINELPAY_WEBAUTHN_ORIGIN=https://<frontend-vercel-domain>
+```
 
 Do not commit database credentials. The backend uses SQLite only as a local fallback and PostgreSQL in deployment.
 
