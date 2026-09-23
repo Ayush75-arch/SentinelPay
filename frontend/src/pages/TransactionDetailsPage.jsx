@@ -351,7 +351,7 @@ function TransactionDetailsPage({ onNavigate, transactionId }) {
               {displayRiskReasons.map((reason) => (
                 <article
                   className={`risk-reason ${reason.type}`}
-                  key={reason.title}
+                  key={`${reason.title}-${reason.description}`}
                 >
                   <div className="reason-icon">
                     {reason.icon}

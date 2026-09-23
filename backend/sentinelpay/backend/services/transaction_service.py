@@ -23,7 +23,8 @@ class ModelState:
     model: BehavioralAnomalyModel | None = None
 
 model_state = ModelState()
-TRAINING_PATH = Path(__file__).resolve().parents[3] / "backendA" / "data" / "train.csv"
+BACKEND_ROOT = Path(__file__).resolve().parents[3]
+TRAINING_PATH = BACKEND_ROOT / "backendA" / "data" / "train.csv"
 
 def train_behavioral_model() -> ModelState:
     """Fit Person A's public pipeline; its labels are never used by fit or scoring."""
