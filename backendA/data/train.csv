@@ -1,0 +1,13 @@
+transaction_id,user_id,timestamp,amount,currency,transaction_type,merchant,category,latitude,longitude,payment_method,is_recurring,status,is_anomaly,anomaly_type
+a1,training-user,2026-01-01T09:00:00,100,INR,purchase,Local Mart,groceries,12.9716,77.5946,card,false,approved,0,NONE
+a2,training-user,2026-01-02T09:10:00,105,INR,purchase,Local Mart,groceries,12.9717,77.5947,card,false,approved,0,NONE
+a3,training-user,2026-01-03T09:20:00,95,INR,purchase,Local Mart,groceries,12.9715,77.5945,card,false,approved,0,NONE
+a4,training-user,2026-01-04T09:00:00,102,INR,purchase,Local Mart,groceries,12.9716,77.5946,card,false,approved,0,NONE
+a5,training-user,2026-01-05T09:10:00,98,INR,purchase,Local Mart,groceries,12.9717,77.5947,card,false,approved,0,NONE
+a6,training-user,2026-01-06T09:20:00,101,INR,purchase,Local Mart,groceries,12.9715,77.5945,card,false,approved,0,NONE
+b1,other-user,2026-01-01T18:00:00,50,INR,purchase,Coffee Shop,dining,28.6139,77.2090,card,false,approved,0,NONE
+b2,other-user,2026-01-02T18:00:00,52,INR,purchase,Coffee Shop,dining,28.6140,77.2091,card,false,approved,0,NONE
+b3,other-user,2026-01-03T18:00:00,49,INR,purchase,Coffee Shop,dining,28.6138,77.2089,card,false,approved,0,NONE
+b4,other-user,2026-01-04T18:00:00,51,INR,purchase,Coffee Shop,dining,28.6139,77.2090,card,false,approved,0,NONE
+b5,other-user,2026-01-05T18:00:00,50,INR,purchase,Coffee Shop,dining,28.6140,77.2091,card,false,approved,0,NONE
+b6,other-user,2026-01-06T18:00:00,53,INR,purchase,Coffee Shop,dining,28.6138,77.2089,card,false,approved,0,NONE

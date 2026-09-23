@@ -1,0 +1,35 @@
+{
+  "name": "synexhack-base-repo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start-hackathon": "node synexus-init.js",
+    "prepare": "husky install",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "check-secrets": "secretlint \"**/*\""
+  },
+  "devDependencies": {
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
+    "prettier": "^3.0.0",
+    "eslint": "^8.45.0",
+    "secretlint": "^8.0.0",
+    "@secretlint/secretlint-rule-preset-recommend": "^8.0.0"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "**/*.{json,md,yml,html,css}": [
+      "prettier --write"
+    ]
+  },
+  "prettier": {
+    "endOfLine": "auto",
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  }
+}
